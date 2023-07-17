@@ -1,0 +1,238 @@
+#basic commands in kali linux:
+==================================================================================
+#file commands
+===================================================================================
+$who :
+	Displays information of the user and time & date,version etc:
+	ex:
+	   $who (in basic kali terminal)
+	
+	   pratap    tty7  2023-07-17(:0)(output)
+	   =>where here the basic information of terminal or os.
+	   =>pratap is host_name of the os.
+	   =>tty7 is the physical terminal from which you logged in.
+	   =>remaining is time of booting.
+	   
+$whoami :
+	 This provide basic information of host_namae of the terminal or os.
+	 
+$To create a file:
+ 		   =>cat command:
+ 		   		=>cat > filename
+ 		   		=>that use create a new file with paticular file name.
+
+	   ex:
+	      $cat > pratap
+	      hello pratap 
+	      this is kali user.
+	      host_name pratap.
+	      ctrl+z
+	      
+	      out put:$ls (here ls used for see directory.)
+	      Desktop    Downloads   pratap
+	      $cat pratap
+	      =>cat is also used to see text in particular file(cat > file_name))
+	      hello pratap 
+	      this is kali user.
+	      host_name pratap.
+	      
+	      
+	      
+$To copy file to another file:
+			syntax:$cp file_name file_name1 
+			=>that the text contain in file_name is transfored to file_name2
+			file_name => file_name2.
+			
+$move file to another file:
+			Moving total file to another file.
+			=>$mv file_name file_name2
+			moving file_name totally into file_name2.
+			
+$create a directory:     
+		   creating a new floder to store a file.
+		   ex:$mkdir dir_name
+		   
+$change the directory or call the directory:
+			$cd
+			=>this use to change the directory.
+			$cd dir_name
+			=>or call the directory.
+	
+$rm file_name=>used to delete. 
+$rm -r dir_name =>used to delete directory.
+$rm -rf file_name =>force delete of file.
+$pwd => shows current directory.
+
+
+$cal=>use to see calendar of particular year.
+
+$head file_name:
+	=>use to show first 10 lines of particular file.
+$tail file_name:
+	=>use to show last 10 lines of particular file
+	
+=>adding specfic text to existing file:
+	$echo "text" | car file_name
+	=>but the line is inserted in last.
+	
+=>adding specfic text in soecfic line to existing fille:
+	$sed '3i This is a new line' file.txt
+	=>sed ==>stream editor 
+	
+=>$/etc/:
+	=>this directory contain all administration system files
+	ex:
+	$/etc/passwd
+	$/etc/bin
+
+#There are 7 different types of files:
+	1.Regular files.=
+	2.Directory File.
+	3.Block Files.
+	4.Character Files.
+	5.Pipe Files.
+	6.Symbol Link Files.
+	7.Socket Files.
+
+=>Block files:
+	=>command used fdisk or /dev.
+	=>located in /dev.
+	
+=>character files:
+	=>this are hardware files that read/writes data in character by character in a file.
+	=>locates in /dev
+	=>command used mknod
+=>pipe files:
+	=>The other name of pipe is a “named” pipe, which is sometimes called a FIFO. FIFO stands for “First In, First Out” and refers to the property that the order of bytes going in is the same coming out. 
+	=>located in/dev.
+	=>command used mkfifo.
+	
+=>symbol files:
+	=>A symbol link file is a type of file in Linux which points to another file or a folder on your device
+	=>command used ln
+	
+syntax:wc filename
+------>wc -l filename(no.of lines)
+----->wc -w filename(no.of words)
+----->wc -c filename(no.of characters)
+------>wc -w -c filename(no.of words and characters)
+
+
+================================================================================
+#USER MANAGEMENT
+================================================================================
+#Normally there are 2 users in kali.
+	1.standard user=>limited acess(file have limited access to modification.)
+	2.root user=>ful access(most kali tool are work under root user that give full acess.)
+	
+=>to move files form one location to another :-  cp source file/destination file.	
+=>echo is used to print the message what we have given.
+		
+$sudo su:
+	sudo su is used for change stnadard user to root user.
+	=>need enter password of root user.
+	
+changing of root user password:
+	=>change standard user to root user.
+	standard_user======>sudo su =======>root_user.
+	=>$passwd root(command use to change new password of root.)
+
+$useradd username(to create new user)
+$passwd  username (to create passwd for username)
+$userdel usernmae(to delete username)
+#switching of user after creating 2 user:
+$su user_name.
+
+=========================================================================================================
+process management
+=========================================================================================================
+$ps =>displays your current active processes.
+$top =>displays all running process.	
+$kill pid =>kill process id pid.
+$fg => brings the most recent jobs to foreground.
+
+=======================================================
+SSH(secure shell)
+=======================================================
+$ssh usesr@host =>connect host as an user.
+$ssh -p user@host =>connect to host on port as user.
+
+=========================================================================================
+FILE/DIRECTORY PERMISSIONS:-
+========================================================================================
+-->User permissions override the group permissons and group permisssions override the other permissions.
+-->r->read
+-->w->write
+-->x->execute
+-->d->type
+-->r-x-->read and execute permission
+-->rw -->read write permission
+-->"chmod" command is used to give the permissions and this command applys on files and directorys.
+-->"chown" command is used to give the ownership or to change the owner ship .
+-->syntax:-
+   1.chown :groupname /home/directoryname(eg:-sensors)-->we execute this command in "cd /home" directory.
+   2.chown :gropuanme /home/directoryname/filename.
+   3.chmod g(group)+w(write) /home/sensors-->this is for directory.
+   4.chmod (g+w or o+w or u+w) /home/sensors/filename -->>this is for files.
+   5.chgrp groupname path-->chgrp admin /common/admin
+   
+-->in place of giving permissions like g+w,u+w,o+w we can directly follow the below syntax
+   r=4
+   w=2
+   x=1
+eg:-
+    chmod 777 /home/sensors/iot
+    chmod 511 /home/sensors/iot
+    chmod 222 /home/sensors/iot
+ ---> "umask" default value is 0022.
+ ---> to change the umask value type: umask "number".
+ -->chmod -1777 /home/directory/filename or /home/directory name. -->it will delete all the permissions that a file or directorty having.
+
+
+===================================================================
+SHORT CUTS
+==================================================================
+ctrl+c => halts the current command.
+ctrl+z =>stops the current and resumes.
+ctrl+D =>logout of current sessions,similar to exit.
+ctrl+W =>erases one word in the current line.
+ctrl+U =>erases the totol line.
+ctrl+R =>type to bring up a recent command.
+!! => repeats the last command
+
+
+=========================================================================================================
+system hacks:
+==========================================================================================================	
+#sharing file with wireless connection within same network.
+--->first open the start menu and search for sharing and then open it ,now turn on all the private,public and all networks and turn of password protection and save the changes.
+--->now create one folder or select one folder and copy one file in to it, if there is no files int it,if there are files no need to copy ,after that right click on that folder and goto
+    propeties and select sharing amd give full control for everyone.
+--->Now in cmd type "ipconfig" and sned your ip address to all then they can access that sahred folder.
+---->here the main point is the users must connect to same network.
+	
+	
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      
+	      
